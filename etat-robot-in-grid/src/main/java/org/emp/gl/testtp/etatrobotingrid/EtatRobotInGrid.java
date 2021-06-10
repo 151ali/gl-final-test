@@ -29,6 +29,10 @@ public class EtatRobotInGrid extends EtatRobot {
         return this.direction;
     }
 
+    public Position getLast_pos() {
+        return last_pos;
+    }
+
     // In order to notify the grid
     PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -66,6 +70,7 @@ public class EtatRobotInGrid extends EtatRobot {
 
     @Override
     public void subscribe(EtatRobotListener listener) {
+        System.out.println(listener);
         pcs.addPropertyChangeListener(listener.getName(), listener);
     }
     @Override

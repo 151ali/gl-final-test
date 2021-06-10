@@ -5,6 +5,7 @@ import org.emp.gl.testtp.robot.Robot;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import org.emp.gl.testtp.etatrobotingrid.Position;
 
@@ -12,9 +13,9 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
     private Robot agent;
     private Integer MAX_X = 10;
     private Integer MAX_Y = 10;
+    JLabel[][] grid= new JLabel[MAX_Y][MAX_Y];
 
-
-    private int contetnt[][] = {
+    private int obstacles[][] = {
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -35,9 +36,7 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
         /*
         frame.getContentPane().add(panel);
 
-
         agent.getEtat().subscribe(this);
-
         panel.addKeyListener(agent.getEtat());
 
         panel.setFocusable(true);
@@ -57,17 +56,30 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
         //setBounds(100, 100, 500, 500);
         panel.setLayout(new GridLayout(row, col));
 
-        JLabel[][] grid= new JLabel[row][col];
+
         for (int i = 0; i < row; i++){
             for (int j = 0; j < col; j++){
                 grid[i][j] = new JLabel();
                 grid[i][j].setBorder(new LineBorder(Color.BLACK));
-                //grid[i][j].setBackground(Color.black);
+                if(obstacles[i][j] == 1){
+                    // obstacle
+                    grid[i][j].setBackground(Color.black);
+                }
+                grid[i][j].setBackground(Color.green);
                 grid[i][j].setOpaque(true);
+
                 panel.add(grid[i][j]);
             }
         }
-        grid[0][0].setBackground(Color.red);
+
+
+        agent.getEtat().subscribe(this);
+        panel.addKeyListener(agent.getEtat());
+
+        panel.setFocusable(true);
+        panel.requestFocusInWindow();
+
+
         frame.setVisible(true);
     }
 
@@ -95,7 +107,9 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
             );
         }
 
-        // TODO : update and show the grid, call show() func
+        // TODO : clean grid when update
+
+        grid[n.getX()][n.getY()].setBackground(Color.red);
         // show();
     }
 }
