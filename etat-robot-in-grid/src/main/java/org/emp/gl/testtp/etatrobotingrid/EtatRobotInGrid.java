@@ -103,11 +103,8 @@ public class EtatRobotInGrid extends EtatRobot {
                 if(direction == Direction.WEST){
                     left();
                 }
-                if(direction == Direction.NORTH){
+                if(direction == Direction.NORTH || direction == Direction.SOUTH){
                     direction = Direction.WEST;
-                }
-                if(direction == Direction.SOUTH){
-                    direction = Direction.EAST;
                 }
                 break;
             case 'd':
@@ -115,10 +112,7 @@ public class EtatRobotInGrid extends EtatRobot {
                 if(direction == Direction.EAST){
                     right();
                 }
-                if(direction == Direction.SOUTH){
-                    direction = Direction.WEST;
-                }
-                if(direction == Direction.NORTH){
+                if(direction == Direction.SOUTH || direction == Direction.NORTH){
                     direction = Direction.EAST;
                 }
                 break;
@@ -126,11 +120,8 @@ public class EtatRobotInGrid extends EtatRobot {
                 if(direction == Direction.SOUTH){
                     down();
                 }
-                if(direction == Direction.EAST){
+                if(direction == Direction.EAST || direction == Direction.WEST){
                     direction = Direction.SOUTH;
-                }
-                if(direction == Direction.WEST){
-                    direction = Direction.NORTH;
                 }
                 break;
         }
