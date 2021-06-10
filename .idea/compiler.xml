@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="etat-robot-listener" />
+        <module name="Grid" />
+        <module name="etat-robot" />
+        <module name="position" />
+        <module name="Robot" />
+        <module name="etat-robot-in-grid" />
+        <module name="launcher" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EtatRobot" target="12" />
+      <module name="EtatWithinGrid" target="12" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
