@@ -101,7 +101,7 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
         System.out.println("current position : " + o);
 
         // check if new_pos out of grid
-        if(n.getX() < 0 || n.getX() > MAX_X || n.getY() > MAX_Y || n.getY() < 0){
+        if(n.getX() < 0 || n.getX() >= MAX_X || n.getY() >= MAX_Y || n.getY() < 0){
             System.out.println("i cannot move from " + o + " to " + n);
         }else{
             // update
