@@ -24,8 +24,8 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
             { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
             { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
-            { 1, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
-            { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 }};
+            { 1, 0, 1, 0, 0, 1, 1, 1, 1, 0 },
+            { 1, 1, 1, 1, 1, 1, 0, 0, 0, 0 }};
 
 
     public MyGrid(Robot agent){
@@ -110,15 +110,14 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
             }else {
                 // update
                 System.out.println("moving from " + o + " to " + n );
+                grid[o.getX()][o.getY()].setBackground(Color.green);
+                grid[n.getX()][n.getY()].setBackground(Color.red);
+
                 agent.getEtat().setPosition(
                         n.getX(), n.getY()
                 );
-                grid[n.getX()][n.getY()].setBackground(Color.red);
             }
-
         }
-
-
         // show();
     }
 }
