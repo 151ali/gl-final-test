@@ -1,32 +1,48 @@
 package org.emp.gl.testtp.etatrobotingrid;
 import org.emp.gl.testtp.etatrobot.EtatRobot;
 import org.emp.gl.testtp.etatrobotlistener.EtatRobotListener;
-import org.emp.gl.testtp.position.Position;
+import org.emp.gl.testtp.robot.Robot;
 
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeSupport;
 
-public class EtatRobotInGrid extends EtatRobot implements KeyListener {
-    private Position p = new Position(0,0);
+public class EtatRobotInGrid extends EtatRobot {
+    private Robot robot;
 
-    public EtatRobotInGrid(Integer x, Integer y){
-        this.p.setX(x);this.p.setX(y);
+    private Position last_pos = new Position();
+
+
+    public EtatRobotInGrid(Robot robot){
+        this.robot = robot;
+        initPosition();
+    }
+
+    public void initPosition(){
+        this.last_pos.setX(5);
+        this.last_pos.setY(5);
     }
 
     // In order to notify the grid
     PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     @Override
-    public void changeEtat(){
-        // TODO : in the function of pressed key
-        Position old_pos = p;
-        Position new_pos = new Position(8,8);
-
-        notify("grid",old_pos,new_pos);
+    public void up(){
+        Position new_pos = new Position(last_pos.getX() - 1 , last_pos.getY());
+        notify("my-grid",last_pos,new_pos);
     }
+    @Override
+    public void left(){
+        Position new_pos = new Position();
 
+        notify("my-grid",last_pos,new_pos);
+    }
+    @Override
+    public void right(){
+        Position new_pos = new Position();
+
+        notify("my-grid",last_pos,new_pos);
+    }
 
 
     // TODO : add abstractions !
@@ -34,10 +50,11 @@ public class EtatRobotInGrid extends EtatRobot implements KeyListener {
         pcs.firePropertyChange(destination, old_pos, new_pos);
     }
 
+    @Override
     public void subscribe(EtatRobotListener listener) {
         pcs.addPropertyChangeListener(listener.getName(), listener);
     }
-
+    @Override
     public void unsubscribe(EtatRobotListener listener) {
         pcs.removePropertyChangeListener(listener);
     }
@@ -51,21 +68,21 @@ public class EtatRobotInGrid extends EtatRobot implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        // System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
         switch(e.getKeyChar()){
             case 'z':
-                // go forward
-
+                System.out.println("go forward");
+                up();
                 break;
             case 'q':
-                // turn left
+                System.out.println("turn left");
+                left();
                 break;
             case 'd':
-                // turn right
+                System.out.println("turn right");
+                right();
                 break;
         }
-
-
-        System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
     }
 
     @Override

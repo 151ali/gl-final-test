@@ -12,6 +12,11 @@
     <artifactId>etat-robot-in-grid</artifactId>
     <dependencies>
         <dependency>
+            <groupId>org.emp.gl.testtp.robot</groupId>
+            <artifactId>Robot</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.emp.gl.testtp</groupId>
             <artifactId>etat-robot</artifactId>
             <version>1.0-SNAPSHOT</version>

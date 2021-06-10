@@ -1,4 +1,4 @@
-package org.emp.gl.testtp.position;
+package org.emp.gl.testtp.etatrobotingrid;
 
 public class Position{
 
@@ -7,6 +7,9 @@ public class Position{
 
     public Position(Integer x, Integer y){
         this.x = x ; this.y = y;
+    }
+    public Position(){
+
     }
 
     public void setX(Integer x){ this.x = x;}

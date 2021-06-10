@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>org.emp.gl.testtp</groupId>
-            <artifactId>etat-robot-in-grid</artifactId>
+            <artifactId>etat-robot</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

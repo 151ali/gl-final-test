@@ -1,15 +1,20 @@
 package org.emp.gl.testtp.robot;
 
-import org.emp.gl.testtp.etatrobotingrid.EtatRobotInGrid;
+
+import org.emp.gl.testtp.etatrobot.EtatRobot;
 
 public class Robot {
-    private EtatRobotInGrid e ;
+    private EtatRobot etat ;
 
-    public Robot(EtatRobotInGrid e){
-        this.e = e;
+    public Robot() {
+        //
     }
 
-    public EtatRobotInGrid getEtat() {
-        return this.e;
+    public EtatRobot getEtat() {
+        return this.etat;
+    }
+
+    public void setEtat(EtatRobot etat) {
+        this.etat = etat;
     }
 }

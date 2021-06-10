@@ -1,7 +1,15 @@
 package org.emp.gl.testtp.etatrobot;
 
-import java.beans.PropertyChangeSupport;
+import org.emp.gl.testtp.etatrobotlistener.EtatRobotListener;
 
-public abstract class EtatRobot {
-    public abstract void changeEtat();
+import java.awt.event.KeyListener;
+
+public abstract class EtatRobot implements KeyListener {
+
+    public abstract void subscribe(EtatRobotListener listener);
+    public abstract void unsubscribe(EtatRobotListener listener);
+    public abstract void up();
+    public abstract void right();
+    public abstract void left
+            ();
 }
