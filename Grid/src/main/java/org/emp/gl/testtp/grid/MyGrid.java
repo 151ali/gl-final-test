@@ -1,16 +1,20 @@
 package org.emp.gl.testtp.grid;
-
 import org.emp.gl.testtp.etatrobotlistener.EtatRobotListener;
 import org.emp.gl.testtp.robot.Robot;
 
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
+import org.emp.gl.testtp.etatrobotingrid.Position;
 
 public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
     private Robot agent;
+    private Integer MAX_X = 10;
+    private Integer MAX_Y = 10;
 
-    private int contetnt[][] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+
+    private int contetnt[][] = {
+            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -49,7 +53,24 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("moving from " + evt.getOldValue() + " to " + evt.getNewValue());
+
+        Position o = (Position) evt.getOldValue();
+        Position n = (Position) evt.getNewValue();
+
+        // check if new_pos out of grid
+
+        if(n.getX() < 0 || n.getX() > MAX_X || n.getY() > MAX_Y || n.getY() < 0){
+            System.out.println("i cannot move from " + o + " to " + n);
+        }else{
+            // update
+            System.out.println(n);
+            System.out.println("moving from " + o + " to " + n);
+            System.out.println(n);
+            agent.getEtat().setPosition(
+                    n.getX(), n.getY()
+            );
+        }
+
         // TODO : update and show the grid, call show() func
         // show();
     }

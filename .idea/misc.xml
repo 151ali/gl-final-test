@@ -11,6 +11,7 @@
       <set>
         <option value="$PROJECT_DIR$/EtatRobot/pom.xml" />
         <option value="$PROJECT_DIR$/EtatWithinGrid/pom.xml" />
+        <option value="$PROJECT_DIR$/position/pom.xml" />
       </set>
     </option>
   </component>

@@ -9,6 +9,8 @@ import java.beans.PropertyChangeSupport;
 
 public class EtatRobotInGrid extends EtatRobot {
     private Robot robot;
+    private Direction direction = Direction.NORTH;
+
 
     private Position last_pos = new Position();
 
@@ -23,6 +25,10 @@ public class EtatRobotInGrid extends EtatRobot {
         this.last_pos.setY(5);
     }
 
+    public Direction getDirection(){
+        return this.direction;
+    }
+
     // In order to notify the grid
     PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
@@ -33,17 +39,19 @@ public class EtatRobotInGrid extends EtatRobot {
     }
     @Override
     public void left(){
-        Position new_pos = new Position();
-
+        Position new_pos = new Position(last_pos.getX() , last_pos.getY() - 1);
         notify("my-grid",last_pos,new_pos);
     }
     @Override
     public void right(){
-        Position new_pos = new Position();
-
+        Position new_pos = new Position(last_pos.getX() , last_pos.getY() + 1);
         notify("my-grid",last_pos,new_pos);
     }
 
+    @Override
+    public void setPosition(Integer x, Integer y){
+        this.last_pos.setX(x);this.last_pos.setY(y);
+    }
 
     // TODO : add abstractions !
     public void notify(String destination, Position old_pos, Position new_pos) {
@@ -71,15 +79,15 @@ public class EtatRobotInGrid extends EtatRobot {
         // System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
         switch(e.getKeyChar()){
             case 'z':
-                System.out.println("go forward");
+                // System.out.println("go forward");
                 up();
                 break;
             case 'q':
-                System.out.println("turn left");
+                // System.out.println("turn left");
                 left();
                 break;
             case 'd':
-                System.out.println("turn right");
+                // System.out.println("turn right");
                 right();
                 break;
         }

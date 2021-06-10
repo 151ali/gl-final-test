@@ -9,7 +9,6 @@
         <module name="etat-robot-listener" />
         <module name="Grid" />
         <module name="etat-robot" />
-        <module name="position" />
         <module name="Robot" />
         <module name="etat-robot-in-grid" />
         <module name="launcher" />
@@ -18,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="EtatRobot" target="12" />
       <module name="EtatWithinGrid" target="12" />
+      <module name="position" target="12" />
     </bytecodeTargetLevel>
   </component>
 </project>
