@@ -65,13 +65,18 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
                     // obstacle
                     grid[i][j].setBackground(Color.black);
                 }
-                grid[i][j].setBackground(Color.green);
                 grid[i][j].setOpaque(true);
+                grid[i][j].setBackground(Color.green);
+
 
                 panel.add(grid[i][j]);
             }
         }
 
+        // init agent position
+        Position ip = (Position) agent.getEtat().getPosition();
+        grid[ip.getX()][ip.getY()].setBackground(Color.red);
+        //
 
         agent.getEtat().subscribe(this);
         panel.addKeyListener(agent.getEtat());
@@ -93,23 +98,22 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
 
         Position o = (Position) evt.getOldValue();
         Position n = (Position) evt.getNewValue();
+        System.out.println("current position : " + o);
 
         // check if new_pos out of grid
         if(n.getX() < 0 || n.getX() > MAX_X || n.getY() > MAX_Y || n.getY() < 0){
             System.out.println("i cannot move from " + o + " to " + n);
         }else{
             // update
-            System.out.println(n);
             System.out.println("moving from " + o + " to " + n );
-            System.out.println(n);
             agent.getEtat().setPosition(
                     n.getX(), n.getY()
             );
+
+            grid[n.getX()][n.getY()].setBackground(Color.red);
         }
 
-        // TODO : clean grid when update
 
-        grid[n.getX()][n.getY()].setBackground(Color.red);
         // show();
     }
 }

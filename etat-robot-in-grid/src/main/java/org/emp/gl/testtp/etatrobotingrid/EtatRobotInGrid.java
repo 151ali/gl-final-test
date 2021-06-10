@@ -21,15 +21,15 @@ public class EtatRobotInGrid extends EtatRobot {
     }
 
     public void initPosition(){
-        this.last_pos.setX(5);
-        this.last_pos.setY(5);
+        this.last_pos.setX(4);
+        this.last_pos.setY(4);
     }
 
     public Direction getDirection(){
         return this.direction;
     }
-
-    public Position getLast_pos() {
+    @Override
+    public Object getPosition() {
         return last_pos;
     }
 
