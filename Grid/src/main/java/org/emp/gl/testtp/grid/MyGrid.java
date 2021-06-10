@@ -16,16 +16,16 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
     JLabel[][] grid= new JLabel[MAX_Y][MAX_Y];
 
     private int obstacles[][] = {
+            { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 },
+            { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            { 1, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
             { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }};
+            { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 },
+            { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+            { 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+            { 1, 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+            { 1, 1, 1, 0, 0, 0, 0, 0, 0, 0 }};
 
 
     public MyGrid(Robot agent){
@@ -64,9 +64,10 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
                 if(obstacles[i][j] == 1){
                     // obstacle
                     grid[i][j].setBackground(Color.black);
+                }else{
+                    grid[i][j].setOpaque(true);
+                    grid[i][j].setBackground(Color.green);
                 }
-                grid[i][j].setOpaque(true);
-                grid[i][j].setBackground(Color.green);
 
 
                 panel.add(grid[i][j]);
@@ -104,13 +105,17 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
         if(n.getX() < 0 || n.getX() >= MAX_X || n.getY() >= MAX_Y || n.getY() < 0){
             System.out.println("i cannot move from " + o + " to " + n);
         }else{
-            // update
-            System.out.println("moving from " + o + " to " + n );
-            agent.getEtat().setPosition(
-                    n.getX(), n.getY()
-            );
+            if(grid[n.getX()][n.getY()].getBackground() == Color.black){
+                System.out.println("<Obstacle> sweezy sweezy lemon squeezy");
+            }else {
+                // update
+                System.out.println("moving from " + o + " to " + n );
+                agent.getEtat().setPosition(
+                        n.getX(), n.getY()
+                );
+                grid[n.getX()][n.getY()].setBackground(Color.red);
+            }
 
-            grid[n.getX()][n.getY()].setBackground(Color.red);
         }
 
 
