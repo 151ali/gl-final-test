@@ -58,13 +58,12 @@ public class MyGrid extends javax.swing.JFrame implements EtatRobotListener {
         Position n = (Position) evt.getNewValue();
 
         // check if new_pos out of grid
-
         if(n.getX() < 0 || n.getX() > MAX_X || n.getY() > MAX_Y || n.getY() < 0){
             System.out.println("i cannot move from " + o + " to " + n);
         }else{
             // update
             System.out.println(n);
-            System.out.println("moving from " + o + " to " + n);
+            System.out.println("moving from " + o + " to " + n );
             System.out.println(n);
             agent.getEtat().setPosition(
                     n.getX(), n.getY()

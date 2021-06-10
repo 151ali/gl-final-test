@@ -37,6 +37,12 @@ public class EtatRobotInGrid extends EtatRobot {
         Position new_pos = new Position(last_pos.getX() - 1 , last_pos.getY());
         notify("my-grid",last_pos,new_pos);
     }
+
+    @Override
+    public void down() {
+        Position new_pos = new Position(last_pos.getX() + 1 , last_pos.getY());
+        notify("my-grid",last_pos,new_pos);
+    }
     @Override
     public void left(){
         Position new_pos = new Position(last_pos.getX() , last_pos.getY() - 1);
@@ -80,15 +86,47 @@ public class EtatRobotInGrid extends EtatRobot {
         switch(e.getKeyChar()){
             case 'z':
                 // System.out.println("go forward");
-                up();
+                if(direction == Direction.NORTH){
+                    up();
+                }
+                if(direction == Direction.WEST || direction == Direction.EAST){
+                    direction = Direction.NORTH;
+                }
                 break;
             case 'q':
                 // System.out.println("turn left");
-                left();
+                if(direction == Direction.WEST){
+                    left();
+                }
+                if(direction == Direction.NORTH){
+                    direction = Direction.WEST;
+                }
+                if(direction == Direction.SOUTH){
+                    direction = Direction.EAST;
+                }
                 break;
             case 'd':
                 // System.out.println("turn right");
-                right();
+                if(direction == Direction.EAST){
+                    right();
+                }
+                if(direction == Direction.SOUTH){
+                    direction = Direction.WEST;
+                }
+                if(direction == Direction.NORTH){
+                    direction = Direction.EAST;
+                }
+                break;
+            case 's':
+                if(direction == Direction.SOUTH){
+                    down();
+                }
+                if(direction == Direction.EAST){
+                    direction = Direction.SOUTH;
+                }
+                if(direction == Direction.WEST){
+                    direction = Direction.NORTH;
+                }
                 break;
         }
     }
